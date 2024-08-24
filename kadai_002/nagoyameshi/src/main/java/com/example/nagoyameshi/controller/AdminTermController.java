@@ -43,7 +43,7 @@ public class AdminTermController {
 		
 		model.addAttribute("termEditForm", termEditForm);
 		
-		return "/admin/terms/edit";
+		return "admin/terms/edit";
 	}
 	
 	@PostMapping("/{id}/update")
