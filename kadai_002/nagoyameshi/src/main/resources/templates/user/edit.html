@@ -152,6 +152,34 @@
 									</div>
 								</div>
 								
+								<div class="form-group row mb-3">
+                                     <div class="col-md-5">
+                                         <label for="password" class="col-form-label text-md-left fw-bold">
+                                             <div class="d-flex align-items-center">
+                                                 <span class="me-1">パスワード</span>
+                                             </div>
+                                         </label>
+                                     </div>
+                                     <div class="col-md-7">
+                                         <div th:if="${#fields.hasErrors('password')}" class="text-danger small mb-2" th:errors="*{password}"></div>
+                                         <input type="password" class="form-control" th:field="*{password}" autocomplete="new-password">
+                                     </div>
+                                 </div>
+                                                                                                                     
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-5">
+                                         <label for="passwordConfirmation" class="col-form-label text-md-left fw-bold">
+                                             <div class="d-flex align-items-center">
+                                                 <span class="me-1">パスワード（確認用）</span>
+                                             </div>
+                                         </label>
+                                     </div>
+                                     <div class="col-md-7">
+                                         <div th:if="${#fields.hasErrors('passwordConfirmation')}" class="text-danger small mb-2" th:errors="*{passwordConfirmation}"></div>
+                                         <input type="password" class="form-control" th:field="*{passwordConfirmation}" autocomplete="new-password">
+                                     </div>
+                                 </div>
+								
 								<hr class="my-4">
 								
 								<div class="form-group d-flex justify-content-center">

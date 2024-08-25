@@ -1,5 +1,7 @@
 package com.example.nagoyameshi.form;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,5 +39,10 @@ public class UserEditForm {
     @NotBlank(message = "メールアドレスを入力してください。")
     @Email(message = "メールアドレスは正しい形式で入力してください。")    
     private String email;
+    
+    @Length(min = 8, message = "パスワードは8文字以上で入力してください。")
+    private String password;
+    
+    private String passwordConfirmation;
 
 }

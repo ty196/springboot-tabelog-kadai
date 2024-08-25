@@ -85,7 +85,13 @@ public class UserService {
             user.setOccupation(null);
         }        
                             
-        user.setEmail(userEditForm.getEmail());      
+        user.setEmail(userEditForm.getEmail()); 
+        
+     // パスワードの更新
+        if (userEditForm.getPassword() != null && !userEditForm.getPassword().isEmpty()) {
+            String encodedPassword = passwordEncoder.encode(userEditForm.getPassword());
+            user.setPassword(encodedPassword);
+        }
         
         userRepository.save(user);
 	}

@@ -46,7 +46,7 @@ public class UserController {
 		UserEditForm userEditForm = new UserEditForm(user.getId(), user.getName(), user.getFurigana(),
 				                                     user.getPostalCode(), user.getAddress(), user.getPhoneNumber(),
 				                                     user.getBirthday() != null ? user.getBirthday().format(DateTimeFormatter.ofPattern("yyyyMMdd")) : null, 
-				                                     user.getOccupation(), user.getEmail());
+				                                     user.getOccupation(), user.getEmail(), user.getPassword(), user.getPasswordConfirmation());
 		
 		model.addAttribute("userEditForm", userEditForm);
 		
@@ -61,6 +61,12 @@ public class UserController {
 			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
 			bindingResult.addError(fieldError);
 		}
+		
+		// パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
+        if (!userService.isSamePassword(userEditForm.getPassword(), userEditForm.getPasswordConfirmation())) {
+            FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+            bindingResult.addError(fieldError);
+        }        
 		
 		if (bindingResult.hasErrors()) {
 			return "user/edit";
