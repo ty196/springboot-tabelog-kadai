@@ -102,12 +102,23 @@
                             <!-- 有料プランに登録しておらず、レビュー数が3件を超えていれば表示する -->
                             <div th:if="${roleName.equals('ROLE_FREE_MEMBER') && reviewPage.getTotalElements() > 3}" class="text-center">
                                 <p>レビューを全件表示するには<a th:href="@{/subscription/register}">有料プランへの登録</a>が必要です。</p>
-                            </div>                                          
+                            </div>           
+                            
+                            <!-- 有料プランに登録しておらず、レビュー数が0件の場合表示する -->
+                            <div th:if="${roleName.equals('ROLE_FREE_MEMBER') && reviewPage.getTotalElements() < 1}" class="text-center">
+								<p>まだレビューがありません。</p>
+								<p>レビューを全件表示するには<a th:href="@{/subscription/register}">有料プランへの登録</a>が必要です。</p>
+							</div>                               
                               
                             <!-- 有料プランに登録しており、レビューを投稿済みでなければ表示する -->               
-                            <div th:if="${roleName.equals('ROLE_PAID_MEMBER') && !hasPostedReview}" class="text-center mt-3">
+                            <div th:if="${roleName.equals('ROLE_PAID_MEMBER') && !hasPostedReview}" class="text-center">
                                 <a th:href="@{/restaurants/__${restaurant.getId()}__/reviews/register}" class="btn text-white shadow-sm w-50 nagoyameshi-btn">レビューを投稿する</a>                
-                            </div>                                                                                
+                            </div>
+                            
+                            <!-- 有料プランに登録しており、レビュー数が0件の場合表示する -->
+                            <div th:if="${roleName.equals('ROLE_PAID_MEMBER') && reviewPage.getTotalElements() < 1}" class="text-center mt-3">
+								<p>まだレビューがありません。</p>
+							</div>                                                                                
                         </div>                          
                     </div>
                 </div>
